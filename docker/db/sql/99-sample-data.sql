@@ -1,6 +1,3 @@
-INSERT INTO practice.users (id, name) VALUES (1, 'yamamoto');
-INSERT INTO practice.users (id, name) VALUES (2, 'tanaka');
-INSERT INTO practice.users (id, name) VALUES (3, 'yamada');
-INSERT INTO practice.users (id, name) VALUES (4, 'takayama');
-INSERT INTO practice.users (id, name) VALUES (5, 'simizu');
-INSERT INTO practice.users (id, name) VALUES (6, 'yamazaki');
+INSERT INTO practice.users (id, name, login_id, gender, email, password) VALUES (1, 'yamamoto', 'yamamoto', 1, 'yamamoto@exsample.com', 'password');
+INSERT INTO practice.users (id, name, login_id, gender, email, password) VALUES (2, 'tanaka', 'tanaka', 2, 'tanaka@exsample.com', 'password');
+INSERT INTO practice.users (id, name, login_id, gender, email, password) VALUES (3, 'suzuki', 'suzuki', 0, 'suzuki@exsample', 'password');
