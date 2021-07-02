@@ -1,9 +1,9 @@
 package com.example.practicespringboot.controller;
 
 import com.example.practicespringboot.controllers.UserController;
-import com.example.practicespringboot.entity.User;
+import com.example.practicespringboot.entities.User;
 import com.example.practicespringboot.mocks.MockUserService;
-import com.example.practicespringboot.viewmodel.UserListViewModel;
+import com.example.practicespringboot.viewmodels.UserListViewModel;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;

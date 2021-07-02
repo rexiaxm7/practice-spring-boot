@@ -1,6 +1,6 @@
-package com.example.practicespringboot.viewmodel;
+package com.example.practicespringboot.viewmodels;
 
-import com.example.practicespringboot.entity.User;
+import com.example.practicespringboot.entities.User;
 
 import java.util.List;
 import java.util.Objects;

@@ -1,8 +1,8 @@
 package com.example.practicespringboot.controllers;
 
-import com.example.practicespringboot.entity.User;
-import com.example.practicespringboot.service.IUserService;
-import com.example.practicespringboot.viewmodel.UserListViewModel;
+import com.example.practicespringboot.entities.User;
+import com.example.practicespringboot.services.IUserService;
+import com.example.practicespringboot.viewmodels.UserListViewModel;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;

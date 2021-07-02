@@ -1,7 +1,7 @@
-package com.example.practicespringboot.service;
+package com.example.practicespringboot.services;
 
-import com.example.practicespringboot.entity.User;
-import com.example.practicespringboot.repository.UserRepository;
+import com.example.practicespringboot.entities.User;
+import com.example.practicespringboot.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

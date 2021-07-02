@@ -1,7 +1,7 @@
 package com.example.practicespringboot.mocks;
 
-import com.example.practicespringboot.entity.User;
-import com.example.practicespringboot.service.IUserService;
+import com.example.practicespringboot.entities.User;
+import com.example.practicespringboot.services.IUserService;
 
 import java.util.ArrayList;
 import java.util.List;
