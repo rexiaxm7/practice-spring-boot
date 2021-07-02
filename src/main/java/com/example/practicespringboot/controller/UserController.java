@@ -1,21 +1,28 @@
 package com.example.practicespringboot.controller;
 
 import com.example.practicespringboot.entity.User;
+import com.example.practicespringboot.model.UserListModel;
+import com.example.practicespringboot.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
-import com.example.practicespringboot.repository.UserRepository;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
 
-@RestController
+@Controller
 @RequestMapping("/user")
 public class UserController {
     @Autowired
-    UserRepository userRepository;
+    UserService userService;
 
     @GetMapping("/get")
-    public List<User> get(){
-        List<User> users = userRepository.findAll();
-        return users;
+    public ModelAndView get(ModelAndView mav){
+        List<User> users = userService.findAll();
+
+        mav.addObject("model",new UserListModel(users));
+        mav.setViewName("user/list");
+
+        return mav;
     }
 }
