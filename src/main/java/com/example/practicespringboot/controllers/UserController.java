@@ -1,7 +1,7 @@
-package com.example.practicespringboot.controller;
+package com.example.practicespringboot.controllers;
 
 import com.example.practicespringboot.entity.User;
-import com.example.practicespringboot.model.UserListModel;
+import com.example.practicespringboot.viewmodel.UserListViewModel;
 import com.example.practicespringboot.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -20,8 +20,8 @@ public class UserController {
     public ModelAndView get(ModelAndView mav){
         List<User> users = userService.findAll();
 
-        mav.addObject("model",new UserListModel(users));
-        mav.setViewName("user/list");
+        mav.addObject("model",new UserListViewModel(users));
+        mav.setViewName("user_list");
 
         return mav;
     }
