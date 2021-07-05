@@ -62,17 +62,9 @@ public class UserController {
     }
 
     @GetMapping("{id}/edit")
-    public ModelAndView editUser(ModelAndView mav, @PathVariable Long id, UserForm userForm){
-        User user = IUserService.getById(id);
-
-        // 編集対象のユーザー情報をUserFormにセットする
-        userForm.setEmail(user.getEmail());
-        userForm.setName(user.getName());
-        userForm.setGender(user.getGender());
-        userForm.setLoginId(user.getLoginId());
-
+    public ModelAndView editUser(ModelAndView mav, @PathVariable Long id){
         mav.addObject("id", id);
-        mav.addObject("userForm", userForm);
+        mav.addObject("userForm", IUserService.getUserOnForm(id));
         mav.setViewName("user_edit");
 
         return mav;

@@ -31,6 +31,11 @@ public class MockUserService implements IUserService {
     }
 
     @Override
+    public UserForm getUserOnForm(Long id) {
+        return null;
+    }
+
+    @Override
     public void createUser(UserForm userForm) {
 
     }
