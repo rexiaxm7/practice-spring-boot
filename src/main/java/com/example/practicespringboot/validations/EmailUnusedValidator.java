@@ -19,10 +19,7 @@ public class EmailUnusedValidator implements ConstraintValidator<EmailUnused, St
     public boolean isValid(String email, ConstraintValidatorContext context) {
         User user = IUserService.findByEmail(email);
 
-        if(user == null){
-            return true;
-        }
-        return false;
+        return user == null;
     }
 
 }
