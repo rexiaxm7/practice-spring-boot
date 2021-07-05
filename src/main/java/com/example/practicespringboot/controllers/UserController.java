@@ -1,6 +1,7 @@
 package com.example.practicespringboot.controllers;
 
 import com.example.practicespringboot.entities.User;
+import com.example.practicespringboot.forms.UserForm;
 import com.example.practicespringboot.services.IUserService;
 import com.example.practicespringboot.viewmodels.UserListViewModel;
 import org.springframework.stereotype.Controller;
@@ -10,7 +11,7 @@ import org.springframework.web.servlet.ModelAndView;
 import java.util.List;
 
 @Controller
-@RequestMapping("/user")
+@RequestMapping("/users")
 public class UserController {
 
     private final IUserService IUserService;
@@ -19,13 +20,27 @@ public class UserController {
         this.IUserService = IUserService;
     }
 
-    @GetMapping("/get")
+    @GetMapping("")
     public ModelAndView get(ModelAndView mav){
         List<User> users = IUserService.findAll();
 
         mav.addObject("model",new UserListViewModel(users));
         mav.setViewName("user_list");
 
+        return mav;
+    }
+
+    @GetMapping("/new")
+    public ModelAndView create(ModelAndView mav){
+        mav.setViewName("user_create");
+
+        return mav;
+    }
+
+    @PostMapping("/create")
+    public ModelAndView createUser(ModelAndView mav, UserForm userForm){
+        IUserService.saveUser(userForm);
+        mav.setViewName("redirect:/users");
         return mav;
     }
 }
