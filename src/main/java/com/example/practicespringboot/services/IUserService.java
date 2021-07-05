@@ -9,4 +9,6 @@ public interface IUserService {
     List<User> findAll();
 
     void saveUser(UserForm userForm);
+
+    void deleteUser(Long id);
 }

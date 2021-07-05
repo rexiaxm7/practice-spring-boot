@@ -41,6 +41,15 @@ public class UserController {
     public ModelAndView createUser(ModelAndView mav, UserForm userForm){
         IUserService.saveUser(userForm);
         mav.setViewName("redirect:/users");
+
+        return mav;
+    }
+
+    @PostMapping("/delete")
+    public ModelAndView deleteUser(ModelAndView mav, Long id){
+        IUserService.deleteUser(id);
+        mav.setViewName("redirect:/users");
+
         return mav;
     }
 }

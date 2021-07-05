@@ -32,4 +32,9 @@ public class UserService implements IUserService {
         userRepository.save(user);
     }
 
+    @Override
+    public void deleteUser(Long id) {
+        userRepository.deleteById(id);
+    }
+
 }

@@ -20,6 +20,7 @@
             <th scope="col">パスワード</th>
             <th scope="col">氏名</th>
             <th scope="col">性別</th>
+            <th></th>
         </tr>
         <tr th:each="user : ${model.users}">
             <td th:text="${user.id}"></td>
@@ -31,6 +32,12 @@
                 <span th:case="0" th:text="不明"></span>
                 <span th:case="1" th:text="女性"></span>
                 <span th:case="2" th:text="男性"></span>
+            </td>
+            <td>
+                <form method="post" th:action="@{/users/delete}" id="user-delete-form">
+                    <input type="hidden" name="id" th:value="${user.id}">
+                    <input type="submit" value="削除" class="btn btn-danger user-delete-btn"/>
+                </form>
             </td>
         </tr>
     </table>

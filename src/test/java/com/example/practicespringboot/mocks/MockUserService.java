@@ -25,4 +25,9 @@ public class MockUserService implements IUserService {
 
     }
 
+    @Override
+    public void deleteUser(Long id) {
+
+    }
+
 }
