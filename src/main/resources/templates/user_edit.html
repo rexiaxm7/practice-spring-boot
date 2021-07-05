@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>ユーザー変更</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+          crossorigin="anonymous">
+    <script type="text/javascript" th:src="@{/js/users.js}"></script>
+</head>
+<body>
+    <div class="container">
+        <h1>ユーザー変更</h1>
+        <form method="post" th:action="@{/users/{id}/update(id=${id})}" id="user-update-form" th:object="${userForm}">
+            <!-- メールアドレス -->
+            <div class="mb-3">
+                <label for="email" class="form-label">メールアドレス</label>
+                <input type="email" class="form-control" th:field="*{email}">
+            </div>
+            <!-- ログインID -->
+            <div class="mb-3">
+                ログインID：<span th:text="*{loginId}"></span>
+            </div>
+            <!-- パスワード -->
+            <div class="mb-3">
+                パスワード：********
+            </div>
+            <!-- 氏名 -->
+            <div class="mb-3">
+                <label for="name" class="form-label">氏名</label>
+                <input type="text" class="form-control" th:field="*{name}">
+            </div>
+            <!-- 性別 -->
+            <div class="mb-1">性別</div>
+            <div class="mb-3">
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" th:field="*{gender}" value="2">
+                    <label class="form-check-label" th:for="${#ids.prev('gender')}">
+                        男性
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" th:field="*{gender}" value="1">
+                    <label class="form-check-label" th:for="${#ids.prev('gender')}">
+                        女性
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" th:field="*{gender}" value="0">
+                    <label class="form-check-label" th:for="${#ids.prev('gender')}">
+                        不明
+                    </label>
+                </div>
+            </div>
+            <a href="/users" class="btn btn-secondary">戻る</a>
+            <input type="submit" class="btn btn-primary" id="create-btn" value="登録"></input>
+        </form>
+    </div>
+</body>
+</html>

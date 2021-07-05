@@ -10,7 +10,7 @@
 </head>
 <body>
 <div class="container">
-<h1>ユーザリスト</h1>
+<h1>ユーザーリスト</h1>
     <a href="/users/new" class="btn btn-primary">新規ユーザー登録</a>
     <table class="table">
         <tr>
@@ -20,6 +20,7 @@
             <th scope="col">パスワード</th>
             <th scope="col">氏名</th>
             <th scope="col">性別</th>
+            <th></th>
             <th></th>
         </tr>
         <tr th:each="user : ${model.users}">
@@ -39,6 +40,9 @@
                     <input type="submit" value="削除" class="btn btn-danger user-delete-btn"/>
                 </form>
             </td>
+            <th>
+                <a th:href="@{/users/{id}/edit(id=${user.id})}" class="btn btn-success">編集</a>
+            </th>
         </tr>
     </table>
 </div>

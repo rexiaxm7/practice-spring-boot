@@ -8,7 +8,11 @@ import java.util.List;
 public interface IUserService {
     List<User> findAll();
 
-    void saveUser(UserForm userForm);
+    User getById(Long id);
+
+    void createUser(UserForm userForm);
+
+    void updateUser(Long id, UserForm userForm);
 
     void deleteUser(Long id);
 }

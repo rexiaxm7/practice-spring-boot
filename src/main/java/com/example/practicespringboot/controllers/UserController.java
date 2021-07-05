@@ -39,7 +39,7 @@ public class UserController {
 
     @PostMapping("/create")
     public ModelAndView createUser(ModelAndView mav, UserForm userForm){
-        IUserService.saveUser(userForm);
+        IUserService.createUser(userForm);
         mav.setViewName("redirect:/users");
 
         return mav;
@@ -48,6 +48,32 @@ public class UserController {
     @PostMapping("/delete")
     public ModelAndView deleteUser(ModelAndView mav, Long id){
         IUserService.deleteUser(id);
+        mav.setViewName("redirect:/users");
+
+        return mav;
+    }
+
+    @GetMapping("{id}/edit")
+    public ModelAndView editUser(ModelAndView mav, @PathVariable Long id, UserForm userForm){
+        User user = IUserService.getById(id);
+
+        // 編集対象のユーザー情報をUserFormにセットする
+        userForm.setEmail(user.getEmail());
+        userForm.setName(user.getName());
+        userForm.setGender(user.getGender());
+        userForm.setLoginId(user.getLoginId());
+
+        mav.addObject("id", id);
+        mav.addObject("userForm", userForm);
+        mav.setViewName("user_edit");
+
+        return mav;
+    }
+
+    @PostMapping("{id}/update")
+    public ModelAndView updateUser(ModelAndView mav, @PathVariable Long id, UserForm userForm){
+        IUserService.updateUser(id, userForm);
+
         mav.setViewName("redirect:/users");
 
         return mav;

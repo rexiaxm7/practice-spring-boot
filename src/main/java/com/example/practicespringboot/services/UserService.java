@@ -21,13 +21,29 @@ public class UserService implements IUserService {
     }
 
     @Override
-    public void saveUser(UserForm userForm) {
+    public User getById(Long id) {
+        return userRepository.getById(id);
+    }
+
+    @Override
+    public void createUser(UserForm userForm) {
         User user = new User();
         user.setEmail(userForm.getEmail());
         user.setName(userForm.getName());
-        user.setLoginId(userForm.getLoginId());
         user.setGender(userForm.getGender());
+        user.setLoginId(userForm.getLoginId());
         user.setPassword(userForm.getPassword());
+
+        userRepository.save(user);
+    }
+
+    @Override
+    public void updateUser(Long id, UserForm userForm) {
+        User user = userRepository.getById(id);
+
+        user.setEmail(userForm.getEmail());
+        user.setName(userForm.getName());
+        user.setGender(userForm.getGender());
 
         userRepository.save(user);
     }
