@@ -10,6 +10,8 @@ public interface IUserService {
 
     User getById(Long id);
 
+    User findByEmail(String email);
+
     void createUser(UserForm userForm);
 
     void updateUser(Long id, UserForm userForm);

@@ -1,5 +1,7 @@
 package com.example.practicespringboot.forms;
 
+import com.example.practicespringboot.validations.EmailUnused;
+
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
@@ -10,6 +12,7 @@ public class UserForm {
 
     @NotBlank(groups = {Default.class ,Update.class})
     @Email(groups = {Default.class ,Update.class})
+    @EmailUnused(groups = {Default.class ,Update.class})
     private String email;
 
     @NotBlank(groups = {Default.class ,Update.class})
