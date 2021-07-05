@@ -11,47 +11,74 @@
 <body>
     <div class="container">
         <h1>新規ユーザー登録</h1>
-        <form method="post" th:action="@{/users/create}" id="user-create-form">
+        <form method="post" th:action="@{/users/create}" id="user-create-form" th:object="${userForm}">
             <!-- メールアドレス -->
             <div class="mb-3">
-                <label for="email" class="form-label">メールアドレス</label>
-                <input type="email" class="form-control" id="email" name="email">
+                <label for="email" class="form-label">
+                    メールアドレス
+                    <span class="badge bg-danger">必須</span>
+                </label>
+                <input type="email" class="form-control" th:field="*{email}"
+                       th:classappend="${#fields.hasErrors('email')} ? 'is-invalid' ">
+                <div class="invalid-feedback" th:errors="*{email}"></div>
             </div>
             <!-- ログインID -->
             <div class="mb-3">
-                <label for="loginId" class="form-label">ログインID</label>
-                <input type="text" class="form-control" id="loginId" name="loginId">
+                <label for="loginId" class="form-label">
+                    ログインID
+                    <span class="badge bg-danger">必須</span>
+                </label>
+                <input type="text" class="form-control" th:field="*{loginId}"
+                       th:classappend="${#fields.hasErrors('loginId')} ? 'is-invalid' ">
+                <div class="invalid-feedback" th:errors="*{loginId}"></div>
             </div>
             <!-- パスワード -->
             <div class="mb-3">
-                <label for="password" class="form-label">パスワード</label>
-                <input type="password" class="form-control" id="password" name="password">
+                <label for="password" class="form-label">
+                    パスワード
+                    <span class="badge bg-danger">必須</span>
+                </label>
+                <input type="password" class="form-control" th:field="*{password}"
+                       th:classappend="${#fields.hasErrors('password')} ? 'is-invalid'">
+                <div class="invalid-feedback" th:errors="*{password}"></div>
             </div>
             <!-- 氏名 -->
             <div class="mb-3">
-                <label for="name" class="form-label">氏名</label>
-                <input type="text" class="form-control" id="name" name="name">
+                <label for="name" class="form-label">
+                    氏名
+                    <span class="badge bg-danger">必須</span>
+                </label>
+                <input type="text" class="form-control" th:field="*{name}"
+                       th:classappend="${#fields.hasErrors('name')} ? 'is-invalid'">
+                <div class="invalid-feedback" th:errors="*{name}"></div>
             </div>
             <!-- 性別 -->
-            <div class="mb-1">性別</div>
+            <div class="mb-1">
+                性別
+                <span class="badge bg-danger">必須</span>
+            </div>
             <div class="mb-3">
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="gender" id="man" value="2" checked>
+                    <input class="form-check-input" type="radio" name="gender" id="man" value="2"
+                           th:classappend="${#fields.hasErrors('gender')} ? 'is-invalid'" th:checked="*{gender == 2}">
                     <label class="form-check-label" for="man">
                         男性
                     </label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="gender" id="woman" value="1">
+                    <input class="form-check-input" type="radio" name="gender" id="woman" value="1"
+                           th:classappend="${#fields.hasErrors('gender')} ? 'is-invalid'" th:checked="*{gender == 1}">
                     <label class="form-check-label" for="woman">
                         女性
                     </label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="gender" id="unknown" value="0">
+                    <input class="form-check-input" type="radio" name="gender" id="unknown" value="0"
+                           th:classappend="${#fields.hasErrors('gender')} ? 'is-invalid'" th:checked="*{gender == 0}">
                     <label class="form-check-label" for="unknown">
                         不明
                     </label>
+                <div class="invalid-feedback" th:errors="*{gender}"></div>
                 </div>
             </div>
             <a href="/users" class="btn btn-secondary">戻る</a>

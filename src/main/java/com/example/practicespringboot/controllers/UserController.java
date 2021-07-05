@@ -5,9 +5,13 @@ import com.example.practicespringboot.forms.UserForm;
 import com.example.practicespringboot.services.IUserService;
 import com.example.practicespringboot.viewmodels.UserListViewModel;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.validation.Valid;
+import javax.validation.groups.Default;
 import java.util.List;
 
 @Controller
@@ -31,14 +35,19 @@ public class UserController {
     }
 
     @GetMapping("/new")
-    public ModelAndView create(ModelAndView mav){
+    public ModelAndView create(ModelAndView mav, @ModelAttribute UserForm userForm){
         mav.setViewName("user_create");
 
         return mav;
     }
 
     @PostMapping("/create")
-    public ModelAndView createUser(ModelAndView mav, UserForm userForm){
+    public ModelAndView createUser(ModelAndView mav, @Valid UserForm userForm,
+                                   BindingResult bindingResult){
+        if(bindingResult.hasErrors()){
+            mav.setViewName("user_create");
+            return mav;
+        }
         IUserService.createUser(userForm);
         mav.setViewName("redirect:/users");
 
@@ -71,7 +80,13 @@ public class UserController {
     }
 
     @PostMapping("{id}/update")
-    public ModelAndView updateUser(ModelAndView mav, @PathVariable Long id, UserForm userForm){
+    public ModelAndView updateUser(ModelAndView mav, @PathVariable Long id,
+                                   @Validated UserForm userForm, BindingResult bindingResult){
+        if(bindingResult.hasErrors()){
+            mav.setViewName("user_edit");
+            return mav;
+        }
+
         IUserService.updateUser(id, userForm);
 
         mav.setViewName("redirect:/users");

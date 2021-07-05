@@ -15,7 +15,9 @@
             <!-- メールアドレス -->
             <div class="mb-3">
                 <label for="email" class="form-label">メールアドレス</label>
-                <input type="email" class="form-control" th:field="*{email}">
+                <input type="email" class="form-control" th:field="*{email}"
+                       th:classappend="${#fields.hasErrors('email')} ? 'is-invalid' ">
+                <div class="invalid-feedback" th:errors="*{email}"></div>
             </div>
             <!-- ログインID -->
             <div class="mb-3">
@@ -28,28 +30,34 @@
             <!-- 氏名 -->
             <div class="mb-3">
                 <label for="name" class="form-label">氏名</label>
-                <input type="text" class="form-control" th:field="*{name}">
+                <input type="text" class="form-control" th:field="*{name}"
+                       th:classappend="${#fields.hasErrors('name')} ? 'is-invalid' ">
+                <div class="invalid-feedback" th:errors="*{name}"></div>
             </div>
             <!-- 性別 -->
             <div class="mb-1">性別</div>
             <div class="mb-3">
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" th:field="*{gender}" value="2">
+                    <input class="form-check-input" type="radio" th:field="*{gender}" value="2"
+                           th:classappend="${#fields.hasErrors('gender')} ? 'is-invalid' ">
                     <label class="form-check-label" th:for="${#ids.prev('gender')}">
                         男性
                     </label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" th:field="*{gender}" value="1">
+                    <input class="form-check-input" type="radio" th:field="*{gender}" value="1"
+                           th:classappend="${#fields.hasErrors('gender')} ? 'is-invalid' ">
                     <label class="form-check-label" th:for="${#ids.prev('gender')}">
                         女性
                     </label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" th:field="*{gender}" value="0">
+                    <input class="form-check-input" type="radio" th:field="*{gender}" value="0"
+                           th:classappend="${#fields.hasErrors('gender')} ? 'is-invalid' ">
                     <label class="form-check-label" th:for="${#ids.prev('gender')}">
                         不明
                     </label>
+                    <div class="invalid-feedback" th:errors="*{gender}"></div>
                 </div>
             </div>
             <a href="/users" class="btn btn-secondary">戻る</a>

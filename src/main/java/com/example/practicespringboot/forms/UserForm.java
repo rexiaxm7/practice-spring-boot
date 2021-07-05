@@ -1,10 +1,27 @@
 package com.example.practicespringboot.forms;
 
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.groups.Default;
+
 public class UserForm {
+    public interface Update {}
+
+    @NotBlank(groups = {Default.class ,Update.class})
+    @Email(groups = {Default.class ,Update.class})
     private String email;
+
+    @NotBlank(groups = {Default.class ,Update.class})
     private String name;
+
+    @NotBlank
     private String loginId;
+
+    @NotNull(groups = {Default.class ,Update.class})
     private Integer gender;
+
+    @NotBlank
     private String password;
 
     public String getEmail() {
