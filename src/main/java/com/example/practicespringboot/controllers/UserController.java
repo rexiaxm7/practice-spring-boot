@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
-import javax.validation.groups.Default;
 import java.util.List;
 
 @Controller
@@ -81,7 +80,7 @@ public class UserController {
 
     @PostMapping("{id}/update")
     public ModelAndView updateUser(ModelAndView mav, @PathVariable Long id,
-                                   @Validated UserForm userForm, BindingResult bindingResult){
+                                   @Validated(UserForm.Update.class) UserForm userForm, BindingResult bindingResult){
         if(bindingResult.hasErrors()){
             mav.setViewName("user_edit");
             return mav;
