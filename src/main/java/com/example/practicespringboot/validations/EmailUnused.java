@@ -14,7 +14,7 @@ import static java.lang.annotation.RetentionPolicy.RUNTIME;
 @Target({FIELD})
 @Retention(RUNTIME)
 public @interface EmailUnused {
-    String message() default "すでに登録済みのメールアドレスです";
+    String message() default "{com.example.practicespringboot.validations.EmailUnused.message}";
 
     Class<?>[] groups() default {};
 

@@ -1,7 +1,8 @@
 package com.example.practicespringboot.controllers;
 
 import com.example.practicespringboot.entities.User;
-import com.example.practicespringboot.forms.UserForm;
+import com.example.practicespringboot.forms.UserCreateForm;
+import com.example.practicespringboot.forms.UserEditForm;
 import com.example.practicespringboot.services.IUserService;
 import com.example.practicespringboot.viewmodels.UserListViewModel;
 import org.springframework.stereotype.Controller;
@@ -17,15 +18,15 @@ import java.util.List;
 @RequestMapping("/users")
 public class UserController {
 
-    private final IUserService IUserService;
+    private final IUserService userService;
 
-    public UserController(IUserService IUserService) {
-        this.IUserService = IUserService;
+    public UserController(IUserService userService) {
+        this.userService = userService;
     }
 
     @GetMapping("")
     public ModelAndView get(ModelAndView mav){
-        List<User> users = IUserService.findAll();
+        List<User> users = userService.findAll();
 
         mav.addObject("model",new UserListViewModel(users));
         mav.setViewName("user_list");
@@ -34,20 +35,20 @@ public class UserController {
     }
 
     @GetMapping("/new")
-    public ModelAndView create(ModelAndView mav, @ModelAttribute UserForm userForm){
+    public ModelAndView create(ModelAndView mav, @ModelAttribute UserCreateForm userForm){
         mav.setViewName("user_create");
 
         return mav;
     }
 
     @PostMapping("/create")
-    public ModelAndView createUser(ModelAndView mav, @Valid UserForm userForm,
+    public ModelAndView createUser(ModelAndView mav, @Valid UserCreateForm userForm,
                                    BindingResult bindingResult){
         if(bindingResult.hasErrors()){
             mav.setViewName("user_create");
             return mav;
         }
-        IUserService.createUser(userForm);
+        userService.createUser(userForm);
         mav.setViewName("redirect:/users");
 
         return mav;
@@ -55,7 +56,7 @@ public class UserController {
 
     @PostMapping("/delete")
     public ModelAndView deleteUser(ModelAndView mav, Long id){
-        IUserService.deleteUser(id);
+        userService.deleteUser(id);
         mav.setViewName("redirect:/users");
 
         return mav;
@@ -64,7 +65,7 @@ public class UserController {
     @GetMapping("{id}/edit")
     public ModelAndView editUser(ModelAndView mav, @PathVariable Long id){
         mav.addObject("id", id);
-        mav.addObject("userForm", IUserService.getUserOnForm(id));
+        mav.addObject("userEditForm", userService.getUserOnForm(id));
         mav.setViewName("user_edit");
 
         return mav;
@@ -72,13 +73,13 @@ public class UserController {
 
     @PostMapping("{id}/update")
     public ModelAndView updateUser(ModelAndView mav, @PathVariable Long id,
-                                   @Validated(UserForm.Update.class) UserForm userForm, BindingResult bindingResult){
+                                   @Valid UserEditForm userEditForm, BindingResult bindingResult){
         if(bindingResult.hasErrors()){
             mav.setViewName("user_edit");
             return mav;
         }
 
-        IUserService.updateUser(id, userForm);
+        userService.updateUser(id, userEditForm);
 
         mav.setViewName("redirect:/users");
 

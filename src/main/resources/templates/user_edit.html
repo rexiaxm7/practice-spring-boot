@@ -7,21 +7,13 @@
 </head>
 <body>
     <h1>ユーザー編集</h1>
-    <form method="post" th:action="@{/users/{id}/update(id=${id})}" id="user-update-form" th:object="${userForm}">
+    <form method="post" th:action="@{/users/{id}/update(id=${id})}" id="user-update-form" th:object="${userEditForm}">
         <!-- メールアドレス -->
         <div class="mb-3">
             <label for="email" class="form-label">メールアドレス</label>
             <input type="email" class="form-control" th:field="*{email}"
                    th:classappend="${#fields.hasErrors('email')} ? 'is-invalid' ">
             <div class="invalid-feedback" th:errors="*{email}"></div>
-        </div>
-        <!-- ログインID -->
-        <div class="mb-3">
-            ログインID：<span th:text="*{loginId}"></span>
-        </div>
-        <!-- パスワード -->
-        <div class="mb-3">
-            パスワード：********
         </div>
         <!-- 氏名 -->
         <div class="mb-3">

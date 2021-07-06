@@ -7,7 +7,7 @@
 </head>
 <body>
     <h1>新規ユーザー登録</h1>
-    <form method="post" th:action="@{/users/create}" id="user-create-form" th:object="${userForm}">
+    <form method="post" th:action="@{/users/create}" id="user-create-form" th:object="${userCreateForm}">
         <!-- メールアドレス -->
         <div class="mb-3">
             <label for="email" class="form-label">
