@@ -15,7 +15,7 @@ public interface IUserService {
 
     User findByIdAndEmail(Long id, String email);
 
-    UserCreateForm getUserOnForm(Long id);
+    UserEditForm getUserOnForm(Long id);
 
     void createUser(UserCreateForm userForm);
 

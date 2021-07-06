@@ -37,16 +37,15 @@ public class UserService implements IUserService {
     }
 
     @Override
-    public UserCreateForm getUserOnForm(Long id) {
+    public UserEditForm getUserOnForm(Long id) {
         User user = userRepository.getById(id);
 
         // 編集対象のユーザー情報をUserFormにセットする
-        UserCreateForm userForm = new UserCreateForm();
+        UserEditForm userForm = new UserEditForm();
 
         userForm.setEmail(user.getEmail());
         userForm.setName(user.getName());
         userForm.setGender(user.getGender());
-        userForm.setLoginId(user.getLoginId());
 
         return userForm;
     }

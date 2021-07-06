@@ -3,7 +3,7 @@ package com.example.practicespringboot.validations;
 public class EmailCheck {
     private Long id;
 
-    private String Email;
+    private String email;
 
     public Long getId() {
         return id;
@@ -14,10 +14,10 @@ public class EmailCheck {
     }
 
     public String getEmail() {
-        return Email;
+        return email;
     }
 
     public void setEmail(String email) {
-        Email = email;
+        email = email;
     }
 }
