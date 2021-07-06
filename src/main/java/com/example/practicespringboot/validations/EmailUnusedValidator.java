@@ -21,7 +21,6 @@ public class EmailUnusedValidator implements ConstraintValidator<EmailUnused, Ob
 
     @Override
     public boolean isValid(Object value, ConstraintValidatorContext context) {
-        User user;
         BeanWrapper beanWrapper = new BeanWrapperImpl(value);
 
         Long id = beanWrapper.isReadableProperty("id")
@@ -30,17 +29,18 @@ public class EmailUnusedValidator implements ConstraintValidator<EmailUnused, Ob
 
         String email = (String) beanWrapper.getPropertyValue("email");
 
+        User user = userService.findByEmail(email);
+
         if(id == null){
-            user = userService.findByEmail(email);
             return user == null;
         } else {
             if (email != null && email.equals("")) return true;
 
-            if(userService.findByEmail(email) == null){
+            if(user == null){
                 return true;
             }else{
-                user = userService.findByIdAndEmail(id, email);
-                return user != null;
+                User editUser = userService.findByIdAndEmail(id, email);
+                return editUser != null;
             }
         }
 
