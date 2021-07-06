@@ -7,10 +7,12 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.groups.Default;
 
+@EmailUnused
 public class UserEditForm {
+    private Long id;
+
     @NotBlank
     @Email
-    @EmailUnused
     private String email;
 
     @NotBlank
@@ -18,6 +20,14 @@ public class UserEditForm {
 
     @NotNull
     private Integer gender;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public String getEmail() {
         return email;

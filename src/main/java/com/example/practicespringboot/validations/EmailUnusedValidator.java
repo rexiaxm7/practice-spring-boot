@@ -2,11 +2,14 @@ package com.example.practicespringboot.validations;
 
 import com.example.practicespringboot.entities.User;
 import com.example.practicespringboot.services.IUserService;
+import org.springframework.beans.BeanUtils;
+import org.springframework.validation.Errors;
+import org.springframework.validation.Validator;
 
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 
-public class EmailUnusedValidator implements ConstraintValidator<EmailUnused, String> {
+public class EmailUnusedValidator implements ConstraintValidator<EmailUnused, Object> {
     private final IUserService IUserService;
 
     public EmailUnusedValidator(IUserService IUserService) {
@@ -16,10 +19,22 @@ public class EmailUnusedValidator implements ConstraintValidator<EmailUnused, St
     public void initialize(EmailUnused constraintAnnotation) { }
 
     @Override
-    public boolean isValid(String email, ConstraintValidatorContext context) {
-        User user = IUserService.findByEmail(email);
+    public boolean isValid(Object value, ConstraintValidatorContext context) {
+        User user = null;
 
-        return user == null;
+        EmailCheck emailCheck = new EmailCheck();
+        BeanUtils.copyProperties(value, emailCheck);
+
+        if(emailCheck.getId() == null){
+            user = IUserService.findByEmail(emailCheck.getEmail());
+            return user == null;
+        }else{
+            if(emailCheck.getEmail().equals("")) return true;
+
+            user = IUserService.findByIdAndEmail(emailCheck.getId(),emailCheck.getEmail());
+            return user != null;
+        }
+
     }
 
 }

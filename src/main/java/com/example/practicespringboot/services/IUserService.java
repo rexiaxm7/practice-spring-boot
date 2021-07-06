@@ -13,6 +13,8 @@ public interface IUserService {
 
     User findByEmail(String email);
 
+    User findByIdAndEmail(Long id, String email);
+
     UserCreateForm getUserOnForm(Long id);
 
     void createUser(UserCreateForm userForm);

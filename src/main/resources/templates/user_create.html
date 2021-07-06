@@ -15,8 +15,9 @@
                 <span class="badge bg-danger">必須</span>
             </label>
             <input type="email" class="form-control" th:field="*{email}"
-                   th:classappend="${#fields.hasErrors('email')} ? 'is-invalid' ">
+                   th:classappend="${#fields.hasErrors('email') or #fields.hasErrors('${userCreateForm}')} ? 'is-invalid' ">
             <div class="invalid-feedback" th:errors="*{email}"></div>
+            <div class="invalid-feedback" th:errors="${userCreateForm}"></div>
         </div>
         <!-- ログインID -->
         <div class="mb-3">

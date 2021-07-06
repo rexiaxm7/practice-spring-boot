@@ -12,8 +12,9 @@
         <div class="mb-3">
             <label for="email" class="form-label">メールアドレス</label>
             <input type="email" class="form-control" th:field="*{email}"
-                   th:classappend="${#fields.hasErrors('email')} ? 'is-invalid' ">
+                   th:classappend="${#fields.hasErrors('email') or #fields.hasErrors('${userEditForm}')} ? 'is-invalid' ">
             <div class="invalid-feedback" th:errors="*{email}"></div>
+            <div class="invalid-feedback" th:errors="${userEditForm}"></div>
         </div>
         <!-- 氏名 -->
         <div class="mb-3">

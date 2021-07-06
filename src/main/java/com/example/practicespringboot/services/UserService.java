@@ -32,6 +32,11 @@ public class UserService implements IUserService {
     }
 
     @Override
+    public User findByIdAndEmail(Long id, String email) {
+        return userRepository.findByIdAndEmail(id, email);
+    }
+
+    @Override
     public UserCreateForm getUserOnForm(Long id) {
         User user = userRepository.getById(id);
 

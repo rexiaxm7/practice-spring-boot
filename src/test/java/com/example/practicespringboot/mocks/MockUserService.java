@@ -32,6 +32,11 @@ public class MockUserService implements IUserService {
     }
 
     @Override
+    public User findByIdAndEmail(Long id, String email) {
+        return null;
+    }
+
+    @Override
     public UserCreateForm getUserOnForm(Long id) {
         return null;
     }
