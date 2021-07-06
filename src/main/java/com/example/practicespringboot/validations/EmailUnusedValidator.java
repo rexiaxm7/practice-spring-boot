@@ -3,9 +3,6 @@ package com.example.practicespringboot.validations;
 import com.example.practicespringboot.entities.User;
 import com.example.practicespringboot.services.IUserService;
 import org.springframework.beans.BeanUtils;
-import org.springframework.validation.Errors;
-import org.springframework.validation.Validator;
-
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 
@@ -20,7 +17,7 @@ public class EmailUnusedValidator implements ConstraintValidator<EmailUnused, Ob
 
     @Override
     public boolean isValid(Object value, ConstraintValidatorContext context) {
-        User user = null;
+        User user;
 
         EmailCheck emailCheck = new EmailCheck();
         BeanUtils.copyProperties(value, emailCheck);

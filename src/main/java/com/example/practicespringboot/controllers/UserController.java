@@ -7,7 +7,6 @@ import com.example.practicespringboot.services.IUserService;
 import com.example.practicespringboot.viewmodels.UserListViewModel;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
