@@ -1,9 +1,10 @@
 package com.example.practicespringboot.controller;
 
 import com.example.practicespringboot.controllers.UserController;
-import com.example.practicespringboot.entities.User;
+import com.example.practicespringboot.domains.User;
 import com.example.practicespringboot.mocks.MockUserService;
-import com.example.practicespringboot.viewmodels.UserListViewModel;
+import com.example.practicespringboot.forms.UserListForm;
+import com.example.practicespringboot.utils.UserConverter;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -21,8 +22,8 @@ public class HelloControllerTest {
 
     public HelloControllerTest() {
         testUsers = new ArrayList<>();
-        User testUser1 = new User();
-        testUsers.add(testUser1);
+        User user = new User();
+        testUsers.add(user);
     }
 
     @BeforeEach
@@ -34,7 +35,7 @@ public class HelloControllerTest {
     @Test
     @DisplayName("Test!")
     public void test() {
-        UserListViewModel expectedUserListViewModel = new UserListViewModel(testUsers);
+        UserListForm expectedUserListViewModel = UserConverter.ToListForm(testUsers);
 
         ModelAndView actual = userController.get(new ModelAndView());
 

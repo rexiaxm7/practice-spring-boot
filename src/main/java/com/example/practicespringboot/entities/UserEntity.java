@@ -5,7 +5,7 @@ import java.util.Objects;
 
 @Entity
 @Table(name = "users")
-public class User {
+public class UserEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
@@ -27,10 +27,6 @@ public class User {
 
     public Long getId() {
         return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public String getName() {
@@ -65,10 +61,6 @@ public class User {
         this.email = email;
     }
 
-    public String getPassword() {
-        return password;
-    }
-
     public void setPassword(String password) {
         this.password = password;
     }
@@ -77,8 +69,8 @@ public class User {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        User user = (User) o;
-        return Objects.equals(id, user.id) && Objects.equals(name, user.name) && Objects.equals(loginId, user.loginId) && Objects.equals(gender, user.gender) && Objects.equals(email, user.email) && Objects.equals(password, user.password);
+        UserEntity userEntity = (UserEntity) o;
+        return Objects.equals(id, userEntity.id) && Objects.equals(name, userEntity.name) && Objects.equals(loginId, userEntity.loginId) && Objects.equals(gender, userEntity.gender) && Objects.equals(email, userEntity.email) && Objects.equals(password, userEntity.password);
     }
 
     @Override
