@@ -1,17 +1,16 @@
 package com.example.practicespringboot.services;
 
-import com.example.practicespringboot.entities.User;
-import com.example.practicespringboot.forms.UserCreateForm;
-import com.example.practicespringboot.repositories.UserRepository;
+import com.example.practicespringboot.domains.User;
+import com.example.practicespringboot.repositories.IUserRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
 public class UserService implements IUserService {
-    final UserRepository userRepository;
+    final IUserRepository userRepository;
 
-    public UserService(UserRepository userRepository) {
+    public UserService(IUserRepository userRepository) {
         this.userRepository = userRepository;
     }
 
@@ -36,26 +35,13 @@ public class UserService implements IUserService {
     }
 
     @Override
-    public void createUser(UserCreateForm userForm) {
-        User user = new User();
-        user.setEmail(userForm.getEmail());
-        user.setName(userForm.getName());
-        user.setGender(userForm.getGender());
-        user.setLoginId(userForm.getLoginId());
-        user.setPassword(userForm.getPassword());
-
+    public void createUser(User user) {
         userRepository.save(user);
     }
 
     @Override
     public void updateUser(Long id, User user) {
-        User targetUser = userRepository.getById(id);
-
-        targetUser.setEmail(user.getEmail());
-        targetUser.setName(user.getName());
-        targetUser.setGender(user.getGender());
-
-        userRepository.save(targetUser);
+        userRepository.updateById(id, user);
     }
 
     @Override

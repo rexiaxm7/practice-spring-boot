@@ -1,6 +1,6 @@
 package com.example.practicespringboot.validations;
 
-import com.example.practicespringboot.entities.User;
+import com.example.practicespringboot.domains.User;
 import com.example.practicespringboot.services.IUserService;
 import org.springframework.beans.BeanWrapper;
 import org.springframework.beans.BeanWrapperImpl;

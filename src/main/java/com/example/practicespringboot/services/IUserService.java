@@ -1,7 +1,6 @@
 package com.example.practicespringboot.services;
 
-import com.example.practicespringboot.entities.User;
-import com.example.practicespringboot.forms.UserCreateForm;
+import com.example.practicespringboot.domains.User;
 
 import java.util.List;
 
@@ -14,7 +13,7 @@ public interface IUserService {
 
     User getById(Long id);
 
-    void createUser(UserCreateForm userForm);
+    void createUser(User user);
 
     void updateUser(Long id, User user);
 

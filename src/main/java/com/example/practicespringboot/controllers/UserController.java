@@ -1,11 +1,11 @@
 package com.example.practicespringboot.controllers;
 
-import com.example.practicespringboot.entities.User;
+import com.example.practicespringboot.domains.User;
 import com.example.practicespringboot.forms.UserCreateForm;
 import com.example.practicespringboot.forms.UserEditForm;
+import com.example.practicespringboot.forms.UserListForm;
 import com.example.practicespringboot.services.IUserService;
 import com.example.practicespringboot.utils.UserConverter;
-import com.example.practicespringboot.viewmodels.UserListViewModel;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
@@ -28,7 +28,8 @@ public class UserController {
     public ModelAndView get(ModelAndView mav) {
         List<User> users = userService.findAll();
 
-        mav.addObject("model", new UserListViewModel(users));
+        UserListForm attributeValue = UserConverter.ToListForm(users);
+        mav.addObject("model", attributeValue);
         mav.setViewName("user_list");
 
         return mav;
@@ -48,7 +49,7 @@ public class UserController {
             mav.setViewName("user_create");
             return mav;
         }
-        userService.createUser(userForm);
+        userService.createUser(UserConverter.ToUser(userForm));
         mav.setViewName("redirect:/users");
 
         return mav;

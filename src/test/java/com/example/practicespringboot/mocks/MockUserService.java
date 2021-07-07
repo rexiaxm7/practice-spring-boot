@@ -1,7 +1,6 @@
 package com.example.practicespringboot.mocks;
 
-import com.example.practicespringboot.entities.User;
-import com.example.practicespringboot.forms.UserCreateForm;
+import com.example.practicespringboot.domains.User;
 import com.example.practicespringboot.services.IUserService;
 
 import java.util.ArrayList;
@@ -36,7 +35,7 @@ public class MockUserService implements IUserService {
     }
 
     @Override
-    public void createUser(UserCreateForm userForm) {
+    public void createUser(User user) {
 
     }
 
