@@ -2,7 +2,6 @@ package com.example.practicespringboot.mocks;
 
 import com.example.practicespringboot.entities.User;
 import com.example.practicespringboot.forms.UserCreateForm;
-import com.example.practicespringboot.forms.UserEditForm;
 import com.example.practicespringboot.services.IUserService;
 
 import java.util.ArrayList;
@@ -32,7 +31,7 @@ public class MockUserService implements IUserService {
     }
 
     @Override
-    public UserEditForm getUserOnForm(Long id) {
+    public User getById(Long id) {
         return null;
     }
 
@@ -42,7 +41,7 @@ public class MockUserService implements IUserService {
     }
 
     @Override
-    public void updateUser(Long id, UserEditForm userEditForm) {
+    public void updateUser(Long id, User user) {
 
     }
 

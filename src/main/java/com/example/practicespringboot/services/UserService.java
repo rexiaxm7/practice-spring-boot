@@ -2,7 +2,6 @@ package com.example.practicespringboot.services;
 
 import com.example.practicespringboot.entities.User;
 import com.example.practicespringboot.forms.UserCreateForm;
-import com.example.practicespringboot.forms.UserEditForm;
 import com.example.practicespringboot.repositories.UserRepository;
 import org.springframework.stereotype.Service;
 
@@ -17,7 +16,7 @@ public class UserService implements IUserService {
     }
 
     @Override
-    public List<User> findAll(){
+    public List<User> findAll() {
         return userRepository.findAll();
     }
 
@@ -32,17 +31,8 @@ public class UserService implements IUserService {
     }
 
     @Override
-    public UserEditForm getUserOnForm(Long id) {
-        User user = userRepository.getById(id);
-
-        // 編集対象のユーザー情報をUserFormにセットする
-        UserEditForm userForm = new UserEditForm();
-
-        userForm.setEmail(user.getEmail());
-        userForm.setName(user.getName());
-        userForm.setGender(user.getGender());
-
-        return userForm;
+    public User getById(Long id) {
+        return userRepository.getById(id);
     }
 
     @Override
@@ -58,14 +48,14 @@ public class UserService implements IUserService {
     }
 
     @Override
-    public void updateUser(Long id, UserEditForm userEditForm) {
-        User user = userRepository.getById(id);
+    public void updateUser(Long id, User user) {
+        User targetUser = userRepository.getById(id);
 
-        user.setEmail(userEditForm.getEmail());
-        user.setName(userEditForm.getName());
-        user.setGender(userEditForm.getGender());
+        targetUser.setEmail(user.getEmail());
+        targetUser.setName(user.getName());
+        targetUser.setGender(user.getGender());
 
-        userRepository.save(user);
+        userRepository.save(targetUser);
     }
 
     @Override
