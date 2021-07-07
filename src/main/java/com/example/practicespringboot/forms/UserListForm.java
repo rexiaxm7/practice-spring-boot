@@ -15,7 +15,7 @@ public class UserListForm {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         UserListForm that = (UserListForm) o;
-        return users.equals(that.users);
+        return Objects.equals(users, that.users);
     }
 
     @Override
@@ -71,5 +71,21 @@ public class UserListForm {
             this.email = email;
         }
 
+        @Override
+        public boolean equals(Object o) {
+            if (this == o) return true;
+            if (o == null || getClass() != o.getClass()) return false;
+            UserForm userForm = (UserForm) o;
+            return Objects.equals(id, userForm.id) &&
+                    Objects.equals(name, userForm.name) &&
+                    Objects.equals(loginId, userForm.loginId) &&
+                    Objects.equals(gender, userForm.gender) &&
+                    Objects.equals(email, userForm.email);
+        }
+
+        @Override
+        public int hashCode() {
+            return Objects.hash(id, name, loginId, gender, email);
+        }
     }
 }
