@@ -33,7 +33,7 @@ public class UserController {
         return mav;
     }
 
-    @GetMapping("/new")
+    @GetMapping("/create")
     public ModelAndView create(ModelAndView mav, @ModelAttribute UserCreateForm userForm){
         mav.setViewName("user_create");
 
@@ -70,7 +70,7 @@ public class UserController {
         return mav;
     }
 
-    @PostMapping("{id}/update")
+    @PostMapping("{id}/edit")
     public ModelAndView updateUser(ModelAndView mav, @PathVariable Long id,
                                    @Valid UserEditForm userEditForm, BindingResult bindingResult){
         if(bindingResult.hasErrors()){
