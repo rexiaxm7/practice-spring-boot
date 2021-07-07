@@ -9,8 +9,6 @@ import java.util.List;
 public interface IUserService {
     List<User> findAll();
 
-    User getById(Long id);
-
     User findByEmail(String email);
 
     User findByIdAndEmail(Long id, String email);

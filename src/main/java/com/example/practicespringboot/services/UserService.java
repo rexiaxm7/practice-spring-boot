@@ -22,11 +22,6 @@ public class UserService implements IUserService {
     }
 
     @Override
-    public User getById(Long id) {
-        return userRepository.getById(id);
-    }
-
-    @Override
     public User findByEmail(String email) {
         return userRepository.findByEmail(email);
     }

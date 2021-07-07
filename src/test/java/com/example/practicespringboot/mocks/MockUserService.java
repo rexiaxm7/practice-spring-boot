@@ -22,11 +22,6 @@ public class MockUserService implements IUserService {
     }
 
     @Override
-    public User getById(Long id) {
-        return null;
-    }
-
-    @Override
     public User findByEmail(String email) {
         return null;
     }

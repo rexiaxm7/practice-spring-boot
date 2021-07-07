@@ -7,6 +7,7 @@
 </head>
 <body>
     <h1>新規ユーザー登録</h1>
+    <!--/*@thymesVar id="userCreateForm" type="com.example.practicespringboot.forms.UserCreateForm"*/-->
     <form method="post" th:action="@{/users/new}" id="user-create-form" th:object="${userCreateForm}">
         <!-- メールアドレス -->
         <div class="mb-3">
@@ -14,7 +15,7 @@
                 メールアドレス
                 <span class="badge bg-danger">必須</span>
             </label>
-            <input type="email" class="form-control" th:field="*{email}"
+            <input type="email" class="form-control" th:field="*{email}" id="email"
                    th:classappend="${#fields.hasErrors('email') or #fields.hasErrors('${userCreateForm}')} ? 'is-invalid' ">
             <div class="invalid-feedback" th:errors="*{email}"></div>
             <div class="invalid-feedback" th:errors="${userCreateForm}"></div>
@@ -25,7 +26,7 @@
                 ログインID
                 <span class="badge bg-danger">必須</span>
             </label>
-            <input type="text" class="form-control" th:field="*{loginId}"
+            <input type="text" class="form-control" th:field="*{loginId}" id="loginId"
                    th:classappend="${#fields.hasErrors('loginId')} ? 'is-invalid' ">
             <div class="invalid-feedback" th:errors="*{loginId}"></div>
         </div>
@@ -35,7 +36,7 @@
                 パスワード
                 <span class="badge bg-danger">必須</span>
             </label>
-            <input type="password" class="form-control" th:field="*{password}"
+            <input type="password" class="form-control" th:field="*{password}" id="password"
                    th:classappend="${#fields.hasErrors('password')} ? 'is-invalid'">
             <div class="invalid-feedback" th:errors="*{password}"></div>
         </div>
@@ -45,7 +46,7 @@
                 氏名
                 <span class="badge bg-danger">必須</span>
             </label>
-            <input type="text" class="form-control" th:field="*{name}"
+            <input type="text" class="form-control" th:field="*{name}" id="name"
                    th:classappend="${#fields.hasErrors('name')} ? 'is-invalid'">
             <div class="invalid-feedback" th:errors="*{name}"></div>
         </div>
@@ -79,7 +80,7 @@
             </div>
         </div>
         <a href="/users" class="btn btn-secondary">戻る</a>
-        <input type="submit" class="btn btn-primary" id="create-btn" value="登録"></input>
+        <input type="submit" class="btn btn-primary" id="create-btn" value="登録"/>
     </form>
 </body>
 </html>

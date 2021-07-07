@@ -6,6 +6,7 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
+@SuppressWarnings("unused")
 @EmailUnused
 public class UserCreateForm {
     @NotBlank

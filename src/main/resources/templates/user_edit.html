@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<!--suppress HtmlFormInputWithoutLabel -->
 <html lang="ja" xmlns:th="http://www.thymeleaf.org"
       th:replace="~{layout/template :: layout(~{::title},~{::body/content()})}">
 <head>
@@ -11,7 +12,7 @@
         <!-- メールアドレス -->
         <div class="mb-3">
             <label for="email" class="form-label">メールアドレス</label>
-            <input type="email" class="form-control" th:field="*{email}"
+            <input type="email" class="form-control" th:field="*{email}" id="email"
                    th:classappend="${#fields.hasErrors('email') or #fields.hasErrors('${userEditForm}')} ? 'is-invalid' ">
             <div class="invalid-feedback" th:errors="*{email}"></div>
             <div class="invalid-feedback" th:errors="${userEditForm}"></div>
@@ -19,7 +20,7 @@
         <!-- 氏名 -->
         <div class="mb-3">
             <label for="name" class="form-label">氏名</label>
-            <input type="text" class="form-control" th:field="*{name}"
+            <input type="text" class="form-control" th:field="*{name}" id="name"
                    th:classappend="${#fields.hasErrors('name')} ? 'is-invalid' ">
             <div class="invalid-feedback" th:errors="*{name}"></div>
         </div>
@@ -50,7 +51,7 @@
             </div>
         </div>
         <a href="/users" class="btn btn-secondary">戻る</a>
-        <input type="submit" class="btn btn-primary" id="create-btn" value="登録"></input>
+        <input type="submit" class="btn btn-primary" id="create-btn" value="登録"/>
     </form>
 </body>
 </html>
