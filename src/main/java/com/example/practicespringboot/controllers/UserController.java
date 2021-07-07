@@ -33,14 +33,14 @@ public class UserController {
         return mav;
     }
 
-    @GetMapping("/create")
+    @GetMapping("/new")
     public ModelAndView create(ModelAndView mav, @ModelAttribute UserCreateForm userForm){
         mav.setViewName("user_create");
 
         return mav;
     }
 
-    @PostMapping("/create")
+    @PostMapping("/new")
     public ModelAndView createUser(ModelAndView mav, @Valid UserCreateForm userForm,
                                    BindingResult bindingResult){
         if(bindingResult.hasErrors()){
