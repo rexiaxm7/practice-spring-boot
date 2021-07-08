@@ -5,14 +5,21 @@ import com.example.practicespringboot.entities.UserEntity;
 import com.example.practicespringboot.forms.UserCreateForm;
 import com.example.practicespringboot.forms.UserEditForm;
 import com.example.practicespringboot.forms.UserListForm;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Component
 public class UserConverter {
+    private final PasswordEncoder passwordEncoder;
 
+    public UserConverter(PasswordEncoder passwordEncoder) {
+        this.passwordEncoder = passwordEncoder;
+    }
 
-    public static UserListForm ToListForm(List<User> users) {
+    public UserListForm ToListForm(List<User> users) {
 
         List<UserListForm.UserForm> userForms = users.stream()
                 .map(user -> {
@@ -28,7 +35,7 @@ public class UserConverter {
         return new UserListForm(userForms);
     }
 
-    public static UserEditForm ToEditForm(User user) {
+    public UserEditForm ToEditForm(User user) {
 
         UserEditForm userEditForm = new UserEditForm();
         userEditForm.setEmail(user.getEmail());
@@ -37,26 +44,29 @@ public class UserConverter {
         return userEditForm;
     }
 
-    public static UserEntity ToEntity(User user) {
+    public UserEntity ToEntity(User user) {
         UserEntity userEntity = new UserEntity();
         userEntity.setEmail(user.getEmail());
         userEntity.setName(user.getName());
         userEntity.setGender(user.getGender());
+        userEntity.setLoginId(user.getLoginId());
+        userEntity.setPassword(user.getPassword());
 
         return userEntity;
     }
 
-    public static User ToUser(UserCreateForm userCreateForm) {
+    public User ToUser(UserCreateForm userCreateForm) {
         User user = new User();
         user.setEmail(userCreateForm.getEmail());
         user.setName(userCreateForm.getName());
         user.setGender(userCreateForm.getGender());
         user.setLoginId(userCreateForm.getLoginId());
-        user.setPassword(userCreateForm.getPassword());
+        String encodePassword = passwordEncoder.encode(userCreateForm.getPassword());
+        user.setPassword(encodePassword);
         return user;
     }
 
-    public static User ToUser(UserEditForm userEditForm) {
+    public User ToUser(UserEditForm userEditForm) {
 
         User user = new User();
         user.setEmail(userEditForm.getEmail());
@@ -65,7 +75,7 @@ public class UserConverter {
         return user;
     }
 
-    public static User ToUser(UserEntity userEntity) {
+    public User ToUser(UserEntity userEntity) {
         if (userEntity == null) {
             return null;
         }
