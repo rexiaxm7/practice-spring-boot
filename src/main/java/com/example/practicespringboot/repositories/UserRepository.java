@@ -11,37 +11,45 @@ import java.util.stream.Collectors;
 
 @Repository
 public class UserRepository implements IUserRepository {
+    private final UserConverter userConverter;
+
 
     private final IBaseUserRepository baseUserRepository;
 
-    public UserRepository(IBaseUserRepository baseUserRepository) {
+    public UserRepository(IBaseUserRepository baseUserRepository, UserConverter userConverter) {
         this.baseUserRepository = baseUserRepository;
+        this.userConverter = userConverter;
     }
 
     @Override
     public List<User> findAll() {
         List<UserEntity> userEntities = baseUserRepository.findAll();
         return userEntities.stream()
-                .map(UserConverter::ToUser)
+                .map(userConverter::ToUser)
                 .collect(Collectors.toList());
     }
 
     @Override
     public User getById(Long id) {
         Optional<UserEntity> userEntity = baseUserRepository.findById(id);
-        return UserConverter.ToUser(userEntity.get());
+        return userConverter.ToUser(userEntity.get());
+    }
+
+    @Override
+    public UserEntity findByLoginId(String loginId) {
+        return baseUserRepository.findByLoginId(loginId);
     }
 
     @Override
     public User findByEmail(String email) {
         UserEntity userEntity = baseUserRepository.findByEmail(email);
-        return UserConverter.ToUser(userEntity);
+        return userConverter.ToUser(userEntity);
     }
 
     @Override
     public User findByIdAndEmail(Long id, String email) {
         UserEntity userEntity = baseUserRepository.findByIdAndEmail(id, email);
-        return UserConverter.ToUser(userEntity);
+        return userConverter.ToUser(userEntity);
     }
 
     @Override
@@ -62,7 +70,7 @@ public class UserRepository implements IUserRepository {
 
     @Override
     public void save(User user) {
-        baseUserRepository.save(UserConverter.ToEntity(user));
+        baseUserRepository.save(userConverter.ToEntity(user));
     }
 
 

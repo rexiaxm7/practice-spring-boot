@@ -17,18 +17,20 @@ import java.util.List;
 @Controller
 @RequestMapping("/users")
 public class UserController {
+    private final UserConverter userConverter;
 
     private final IUserService userService;
 
-    public UserController(IUserService userService) {
+    public UserController(IUserService userService, UserConverter userConverter) {
         this.userService = userService;
+        this.userConverter = userConverter;
     }
 
     @GetMapping("")
     public ModelAndView get(ModelAndView mav) {
         List<User> users = userService.findAll();
 
-        UserListForm attributeValue = UserConverter.ToListForm(users);
+        UserListForm attributeValue = userConverter.ToListForm(users);
         mav.addObject("model", attributeValue);
         mav.setViewName("user_list");
 
@@ -49,7 +51,7 @@ public class UserController {
             mav.setViewName("user_create");
             return mav;
         }
-        userService.createUser(UserConverter.ToUser(userForm));
+        userService.createUser(userConverter.ToUser(userForm));
         mav.setViewName("redirect:/users");
 
         return mav;
@@ -70,7 +72,7 @@ public class UserController {
 
 
         // 編集対象のユーザー情報をUserFormにセットする
-        mav.addObject("userEditForm", UserConverter.ToEditForm(user));
+        mav.addObject("userEditForm", userConverter.ToEditForm(user));
         mav.setViewName("user_edit");
 
         return mav;
@@ -84,7 +86,7 @@ public class UserController {
             return mav;
         }
 
-        userService.updateUser(id, UserConverter.ToUser(userEditForm));
+        userService.updateUser(id, userConverter.ToUser(userEditForm));
 
         mav.setViewName("redirect:/users");
 
